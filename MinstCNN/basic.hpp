@@ -3,7 +3,8 @@
 #include <cctype>
 #include <cstdint>
 #include <cassert>
-
+#include <Eigen/Dense>
+#include <Eigen/StdVector>
 inline float sigmoid(float x) {
     return 1. / (1. + expf(-x));
 }

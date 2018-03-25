@@ -101,6 +101,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Lib\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -145,7 +146,9 @@
   <ItemGroup>
     <ClInclude Include="basic.hpp" />
     <ClInclude Include="convolutional_layer.hpp" />
+    <ClInclude Include="filter.hpp" />
     <ClInclude Include="fully_connected_layer.hpp" />
+    <ClInclude Include="input_layer.hpp" />
     <ClInclude Include="layer.hpp" />
     <ClInclude Include="pooling_layer.hpp" />
   </ItemGroup>
