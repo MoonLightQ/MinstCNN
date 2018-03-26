@@ -4,11 +4,10 @@
 class input_layer : public layer {
 public:
     input_layer(
-        layer *_backward_layer,
         int32_t _size,
         int32_t _depth = 3
     ) : 
-        layer(_backward_layer, _depth)
+        layer(nullptr, _depth)
     {
         output_size = _size;
         for (int32_t index = 0; index != output_depth; index++) {
@@ -17,7 +16,8 @@ public:
     }
 
     void forward() {
-
+        assert(forward_layer != nullptr);
+        forward_layer->forward();
     }
     void backward() {
 

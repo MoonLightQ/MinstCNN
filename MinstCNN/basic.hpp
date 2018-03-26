@@ -5,20 +5,18 @@
 #include <cassert>
 #include <Eigen/Dense>
 #include <Eigen/StdVector>
-inline float sigmoid(float x) {
+inline double sigmoid(double x) {
     return 1. / (1. + expf(-x));
 }
 
-inline float d_sigmoid(float x) {
+inline double d_sigmoid(double x) {
     return sigmoid(x) * (1. - sigmoid(x));
 }
 
-inline float relu(float x) {
+inline double relu(double x) {
     return fmaxf(0., x);
 }
 
-inline float d_relu(float x) {
+inline double d_relu(double x) {
     return (x > 0.) ? 1. : 0.;
 }
-
-auto f = []() {};
