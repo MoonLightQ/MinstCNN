@@ -41,6 +41,12 @@
     <ClInclude Include="input_layer.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CNN.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="layers.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

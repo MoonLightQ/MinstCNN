@@ -3,10 +3,11 @@
 #include <cctype>
 #include <cstdint>
 #include <cassert>
+#include <ctime>
 #include <Eigen/Dense>
-#include <Eigen/StdVector>
+#include <opencv/cv.hpp>
 inline double sigmoid(double x) {
-    return 1. / (1. + expf(-x));
+    return 1. / (1. + exp(-x));
 }
 
 inline double d_sigmoid(double x) {
@@ -14,7 +15,7 @@ inline double d_sigmoid(double x) {
 }
 
 inline double relu(double x) {
-    return fmaxf(0., x);
+    return fmax(0., x);
 }
 
 inline double d_relu(double x) {

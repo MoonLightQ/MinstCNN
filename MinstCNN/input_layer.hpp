@@ -13,6 +13,7 @@ public:
         for (int32_t index = 0; index != output_depth; index++) {
             outputs[index].resize(output_size, output_size);
         }
+        inputs = outputs;
     }
 
     void forward() {

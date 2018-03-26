@@ -1,16 +1,18 @@
 #include <iostream>
-#include <Eigen/Dense>
-#include "input_layer.hpp"
-
-class neuron {
-    Eigen::Vector2d v;
-public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-};
+#include "CNN.hpp"
 
 int main(int argc, char **argv) {
-    input_layer l(nullptr, 2);
-    l.outputs[1] << 1, 2, 3, 4;
-    std::cout << l.outputs[1];
+    input_layer input(7, 1);
+    input.inputs[0] << 
+        1, 2, 3, 1, 2, 3, 1,
+        2, 4, 4, 2, 1, 1, 3,
+        5, 6, 3, 3 ,5, 2, 1,
+        1, 2, 3, 1, 2, 3, 1,
+        2, 4, 4, 2, 1, 1, 3,
+        5, 6, 3, 3, 5, 2, 1,
+        4, 2, 2, 4, 5, 1, 1;
+    convolutional_layer conv(&input, 1);
+    input.forward();
+    std::cout << conv.outputs[0];
     return 0;
 }
