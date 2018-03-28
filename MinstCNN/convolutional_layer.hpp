@@ -73,15 +73,17 @@ public:
             auto& _output = outputs[index_output_depth];
             auto& _filter = filters[index_output_depth];
             // Inside convolution
-            std::cout << "(" << output_height << "," << output_width << ")" << std::endl;
+            //std::cout << "(" << output_height << "," << output_width << ")" << std::endl;
             for (int32_t w = 0; w < output_width; w++) {
                 for (int32_t h = 0; h < output_height; h++) {
                     _output(h, w) = 0;
                     for (int32_t depth = 0; depth < input_depth; depth++) {
                         
-                        std::cout << "Now Conv-ing :\n" << inputs[depth].block(h, w, filter_size, filter_size) << std::endl;
+                        //std::cout << "Now Conv-ing :\n" << inputs[depth].block(h, w, filter_size, filter_size) << std::endl;
                         _output(h, w) += _filter.weights[depth].cwiseProduct(inputs[depth].block(h, w, filter_size, filter_size)).sum();
                     }
+                    // activation func
+                    _output(h, w) = relu(_output(h, w));
                 }
             }
             // Edge convolution (include padding)
