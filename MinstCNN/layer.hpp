@@ -11,6 +11,7 @@ public:
         int32_t _output_depth
     ) : 
         backward_layer(_backward_layer),
+        forward_layer(nullptr),
         output_depth(_output_depth)
     {
         for (int index = 0; index < output_depth; index++) {

@@ -31,8 +31,9 @@ public:
     }
 
     void forward() {
-        assert(forward_layer != nullptr);
-        forward_layer->forward();
+        if (forward_layer != nullptr) {
+            forward_layer->forward();
+        }
     }
     void backward() {
 
