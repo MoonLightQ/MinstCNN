@@ -17,6 +17,8 @@ public:
         raw_output_data.clear();
         raw_output_data.push_back(new Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>);
         raw_output_data[0]->resize(neuron_num, 1);
+        output_height = neuron_num;
+        output_width = 1;
         output_depth = 1;
         outputs.clear();
         outputs.push_back(raw_output_data[0]->block(0, 0, neuron_num, 1));
