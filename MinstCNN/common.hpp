@@ -8,6 +8,8 @@
 #include <Eigen/Dense>
 #include <opencv/cv.hpp>
 
+#define RESERVED_PADDING_SIZE 3
+
 inline double sigmoid(double x) {
     return 1. / (1. + exp(-x));
 }

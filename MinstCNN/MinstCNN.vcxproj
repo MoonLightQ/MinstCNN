@@ -147,7 +147,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="basic.hpp" />
+    <ClInclude Include="common.hpp" />
     <ClInclude Include="CNN.hpp" />
     <ClInclude Include="convolutional_layer.hpp" />
     <ClInclude Include="filter.hpp" />

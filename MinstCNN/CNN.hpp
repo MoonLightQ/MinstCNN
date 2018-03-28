@@ -1,5 +1,5 @@
 #pragma once
-#include "basic.hpp"
+#include "common.hpp"
 #include "layers.hpp"
 
 class CNN {
