@@ -13,16 +13,18 @@ public:
         layer(_backward_layer, _filter_num),    // The output depth is the same as the number of filters. 
         filter_num(_filter_num),
         filter_size(_filter_size),
+        filter_height(_filter_size),
+        filter_width(_filter_size),
         stride(_stride),
         padding(_padding)
     {
         // initialize filters
-        assert((input_height - filter_size + 2 * padding) % stride == 0);
-        assert((input_width - filter_size + 2 * padding) % stride == 0);
+        assert((input_height - filter_height + 2 * padding) % stride == 0);
+        assert((input_width - filter_width + 2 * padding) % stride == 0);
         
         filters = new filter[filter_num];
         for (int32_t index = 0; index != filter_num; index++) {
-            filters[index].initialize(filter_size, input_depth);
+            filters[index].initialize(filter_height, filter_width, input_depth);
         }
 
         // initialize inputs(padding)
@@ -44,11 +46,12 @@ public:
         }
         
         // initialize outputs
-        output_height = (input_height - filter_size + 2 * padding) / stride + 1;
-        output_width = (input_width - filter_size + 2 * padding) / stride + 1;
+        output_height = (input_height - filter_height + 2 * padding) / stride + 1;
+        output_width = (input_width - filter_width + 2 * padding) / stride + 1;
         input_height += 2 * padding;
         input_width += 2 * padding;
 
+        outputs.clear();
         for (int32_t index_output_depth = 0; index_output_depth != output_depth; index_output_depth++) {
             raw_output_data[index_output_depth]->resize(
                 output_height + 2 * RESERVED_PADDING_SIZE,
@@ -63,8 +66,11 @@ public:
                     output_width
                 )
             );
-            //filters[index_output_depth].output = outputs[index_output_depth];
         }
+    }
+
+    ~convolutional_layer() {
+        delete[] filters;
     }
 
     void forward() {
@@ -80,8 +86,9 @@ public:
                     for (int32_t depth = 0; depth < input_depth; depth++) {
                         
                         //std::cout << "Now Conv-ing :\n" << inputs[depth].block(h, w, filter_size, filter_size) << std::endl;
-                        _output(h, w) += _filter.weights[depth].cwiseProduct(inputs[depth].block(h, w, filter_size, filter_size)).sum();
+                        _output(h, w) += _filter.weights[depth].cwiseProduct(inputs[depth].block(h, w, filter_height, filter_width)).sum();
                     }
+                    _output(h, w) += _filter.bias;
                     // activation func
                     _output(h, w) = relu(_output(h, w));
                 }
@@ -97,6 +104,8 @@ public:
     }
     int32_t filter_num;
     int32_t filter_size;
+    int32_t filter_height;
+    int32_t filter_width;
     int32_t stride;
     int32_t padding;
     

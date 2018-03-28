@@ -22,6 +22,7 @@ public:
         output_height = input_height / stride;
         output_width = input_width / stride;
         
+        outputs.clear();
         for (int32_t index = 0; index != output_depth; index++) {
             raw_output_data[index]->resize(
                 output_height + 2 * RESERVED_PADDING_SIZE,
