@@ -72,7 +72,7 @@ public:
             // Binding reference
             auto& _output = outputs[index_output_depth];
             auto& _filter = filters[index_output_depth];
-            // Inside convolution
+            // Convolution
             //std::cout << "(" << output_height << "," << output_width << ")" << std::endl;
             for (int32_t w = 0; w < output_width; w++) {
                 for (int32_t h = 0; h < output_height; h++) {
@@ -86,9 +86,8 @@ public:
                     _output(h, w) = relu(_output(h, w));
                 }
             }
-            // Edge convolution (include padding)
-
         }
+        forward_layer->forward();
     }
 
     void backward() {

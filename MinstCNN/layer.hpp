@@ -16,8 +16,6 @@ public:
         for (int index = 0; index < output_depth; index++) {
             raw_output_data.push_back(new Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>);
         }
-//        raw = new Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>[output_depth];
-        //outputs = raw;
         if (backward_layer != nullptr) {
             inputs = backward_layer->outputs;
             input_depth = backward_layer->output_depth;
