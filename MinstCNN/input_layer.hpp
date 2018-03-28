@@ -11,7 +11,8 @@ public:
     {
         output_size = _size;
         for (int32_t index = 0; index != output_depth; index++) {
-            outputs[index].resize(output_size, output_size);
+            outputs[index]->resize(output_size, output_size);
+            outputs[index]->setZero();
         }
         inputs = outputs;
     }
@@ -25,6 +26,10 @@ public:
     }
 
     ~input_layer() {
+
+    }
+
+    void pad(int32_t _padding) {
 
     }
 };

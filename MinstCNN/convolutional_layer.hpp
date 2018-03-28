@@ -24,23 +24,23 @@ public:
         output_size = (input_size - filter_size + 2 * padding) / stride + 1;
 
         for (int32_t index_output_depth = 0; index_output_depth != output_depth; index_output_depth++) {
-            outputs[index_output_depth].resize(output_size, output_size);
-            filters[index_output_depth].output = &outputs[index_output_depth];
+            outputs[index_output_depth]->resize(output_size, output_size);
+            filters[index_output_depth].output = outputs[index_output_depth];
         }
-        
     }
 
     void forward() {
         for (int32_t index_output_depth = 0; index_output_depth != output_depth; index_output_depth++) {
             // Binding reference
-            auto& _output = outputs[index_output_depth];
+            auto& _output = *outputs[index_output_depth];
             auto& _filter = filters[index_output_depth];
             // Inside convolution
             for (int32_t x = 0; x < output_size; x++) {
                 for (int32_t y = 0; y < output_size; y++) {
                     _output(y, x) = 0;
                     for (int32_t depth = 0; depth < input_depth; depth++) {
-                        _output(y, x) += _filter.weights[depth].cwiseProduct(inputs[depth].block(y, x, filter_size, filter_size)).sum();
+                        std::cout << "Now Conv-ing :\n" << inputs[depth]->block(y, x, filter_size, filter_size) << std::endl;
+                        _output(y, x) += _filter.weights[depth].cwiseProduct(inputs[depth]->block(y, x, filter_size, filter_size)).sum();
                     }
                 }
             }
