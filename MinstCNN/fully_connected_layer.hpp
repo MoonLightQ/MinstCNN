@@ -7,15 +7,10 @@ public:
         layer *_backward_layer,
         int32_t _neuron_num
     ) :
-        layer(_backward_layer, _neuron_num)
+        layer(_backward_layer, 1) // output_depth is 1 'cause each neuron outputs a single double value to one vector. 
     {
         neuron_num = _neuron_num;
-        // reinitialize
-        for (auto& pointer_to_matrix : raw_output_data) {
-            delete pointer_to_matrix;
-        }
-        raw_output_data.clear();
-        raw_output_data.push_back(new Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>);
+
         raw_output_data[0]->resize(neuron_num, 1);
         output_height = neuron_num;
         output_width = 1;

@@ -47,6 +47,9 @@
     <ClInclude Include="common.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="softmax_layer.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

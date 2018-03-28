@@ -8,6 +8,7 @@ int main(int argc, char **argv) {
     pooling_layer pooling(&conv, 2);
     fully_connected_layer fc1(&pooling, 80);
     fully_connected_layer fc2(&fc1, 10);
+    softmax_layer softmax(&fc2);
     input.inputs[0] <<
         1, 2, 3, 4, 5, 6, 7, 8,
         3, 3, 4, 5, 6, 7, 1, 2,
@@ -23,5 +24,6 @@ int main(int argc, char **argv) {
     std::cout << "pooling: \n" << pooling.outputs[0] << std::endl;
     std::cout << "fc1: \n" << fc1.outputs[0] << std::endl;
     std::cout << "fc2: \n" << fc2.outputs[0] << std::endl;
+    std::cout << "softmax: \n" << softmax.outputs[0] << std::endl;
     return 0;
 }
