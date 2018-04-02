@@ -4,7 +4,7 @@
 int main(int argc, char **argv) {
     CNN n;
     input_layer input(8, 8, 1);
-    convolutional_layer conv(&input, 1);
+    convolutional_layer conv(&input, 8);
     pooling_layer pooling(&conv, 2);
     fully_connected_layer fc1(&pooling, 80);
     fully_connected_layer fc2(&fc1, 10);

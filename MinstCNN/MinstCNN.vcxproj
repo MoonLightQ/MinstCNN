@@ -157,6 +157,7 @@
     <ClInclude Include="layers.hpp" />
     <ClInclude Include="pooling_layer.hpp" />
     <ClInclude Include="softmax_layer.hpp" />
+    <ClInclude Include="softmax_loss_layer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
